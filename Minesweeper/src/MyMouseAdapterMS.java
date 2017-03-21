@@ -20,54 +20,73 @@ public class MyMouseAdapterMS extends MouseAdapter {
 
 
 	public void ResetGame(){
+
+		for(int i=1; i<10; i++){
+			for(int j=1; j<10; j++){
+				boardgame[i][j] = 0 ;
+			}
+
+		}
 		for(int c=1; c <11 ; c++){
-			int i = generator.nextInt(11);
-			int j = generator.nextInt(11);
-		mines[i][j] = MINE;
-		
-		System.out.print("Mine  " );
-		System.out.println(c);
-		
-		System.out.print(" x ");
-		System.out.println(i);
-		
-		System.out.print(" y ");
-		System.out.println(j);
+			int i;
+			int j;
+			do{
+				i = generator.nextInt(11);
+				j = generator.nextInt(11);
+			}while(mines[i][j] ==  MINE || i== 0 || j== 0);
+
+			mines[i][j] = MINE;
+
+
+			System.out.print("Mine  " );
+			System.out.println(c);
+
+			System.out.print(" x= ");
+			System.out.println(i);
+
+			System.out.print(" y= ");
+			System.out.println(j);
 		}
 	}
 
+	public void Flag(){
+		//place flag on tile
 
-//	if(MineExploded){
-//		public void Lose(){
-//			//Show Board
-//		}
-//	}
+
+	}
+
+
+	//	if(MineExploded){
+	//		public void Lose(){
+	//			//Show Board
+	//		}
+	//	}
 
 	public void mousePressed(MouseEvent e) {
 		switch (e.getButton()) {
 		case 1:		//Left mouse button
-		Component c = e.getComponent();
-		while (!(c instanceof JFrame)) {
-			c = c.getParent();
-			if (c == null) {
-				return;
+			Component c = e.getComponent();
+			while (!(c instanceof JFrame)) {
+				c = c.getParent();
+				if (c == null) {
+					return;
+				}
 			}
-		}
-		JFrame myFrame = (JFrame) c;
-		MyPanelMS myPanel = (MyPanelMS) myFrame.getContentPane().getComponent(0);
-		Insets myInsets = myFrame.getInsets();
-		int x1 = myInsets.left;
-		int y1 = myInsets.top;
-		//determines position of mouse click
-		e.translatePoint(-x1, -y1);
-		int x = e.getX();
-		int y = e.getY();
-		myPanel.x = x;
-		myPanel.y = y;
-		myPanel.mouseDownGridX = myPanel.getGridX(x, y);
-		myPanel.mouseDownGridY = myPanel.getGridY(x, y);
-		myPanel.repaint();
-		break;
+			JFrame myFrame = (JFrame) c;
+			MyPanelMS myPanel = (MyPanelMS) myFrame.getContentPane().getComponent(0);
+			Insets myInsets = myFrame.getInsets();
+			int x1 = myInsets.left;
+			int y1 = myInsets.top;
+			//determines position of mouse click
+			e.translatePoint(-x1, -y1);
+			int x = e.getX();
+			int y = e.getY();
+			myPanel.x = x;
+			myPanel.y = y;
+			myPanel.mouseDownGridX = myPanel.getGridX(x, y);
+			myPanel.mouseDownGridY = myPanel.getGridY(x, y);
+			myPanel.repaint();
+			break;
 		case 3:		//Right mouse button
 			//Do nothing
 			Component cR = e.getComponent();
@@ -90,6 +109,8 @@ public class MyMouseAdapterMS extends MouseAdapter {
 			myPanelR.mouseDownGridX = myPanelR.getGridX(xR, yR);
 			myPanelR.mouseDownGridY = myPanelR.getGridY(xR, yR);
 			myPanelR.repaint();
+
+
 			break;
 		default:    //Some other button (2 = Middle mouse button, etc.)
 			//Do nothing
@@ -118,16 +139,16 @@ public class MyMouseAdapterMS extends MouseAdapter {
 			myPanel.y = y;
 			int gridX = myPanel.getGridX(x, y);
 			int gridY = myPanel.getGridY(x, y);
-			
-			System.out.print(" x ");
+
+			System.out.print(" x =");
 			System.out.println(gridX);
-			
-			System.out.print(" y ");
+
+			System.out.print(" y =");
 			System.out.println(gridY);
 			if(gridX == -2 || gridY == -2){
 				ResetGame();
 			}
-			
+
 			if ((myPanel.mouseDownGridX == -1) || (myPanel.mouseDownGridY == -1)) {
 				//Had pressed outside
 				//Do nothing
@@ -180,6 +201,9 @@ public class MyMouseAdapterMS extends MouseAdapter {
 			int gridXR = myPanelR.getGridX(xR, yR);
 			int gridYR = myPanelR.getGridY(xR, yR);
 
+			if(gridXR >0 && gridXR <11 && gridYR >0 && gridYR>11){
+				Flag();
+			}
 			if ((gridXR == -1) || (gridYR == -1)) { // If you click outside the grid
 
 			}
