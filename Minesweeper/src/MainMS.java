@@ -14,5 +14,7 @@ public class MainMS {
 		myFrame.addMouseListener(myMouseAdapter);
 
 		myFrame.setVisible(true);
+		
+		SuperExplosivo.SetMine();
 	}
 }

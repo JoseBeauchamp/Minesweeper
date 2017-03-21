@@ -10,44 +10,11 @@ import java.util.Scanner;
 import javax.swing.JFrame;
 
 public class MyMouseAdapterMS extends MouseAdapter {
-	private Random generator = new Random();
-	private int[][] mines = new int[11][11];
-	private char[][] boardgame = new char[11][11];
-	private int Line, Column;
-	private int MINE = 10;
+
 	Random random = new Random();
 	Scanner input = new Scanner(System.in);
 
 
-	public void ResetGame(){
-
-		for(int i=1; i<10; i++){
-			for(int j=1; j<10; j++){
-				boardgame[i][j] = 0 ;
-			}
-
-		}
-		for(int c=1; c <11 ; c++){
-			int i;
-			int j;
-			do{
-				i = generator.nextInt(11);
-				j = generator.nextInt(11);
-			}while(mines[i][j] ==  MINE || i== 0 || j== 0);
-
-			mines[i][j] = MINE;
-
-
-			System.out.print("Mine  " );
-			System.out.println(c);
-
-			System.out.print(" x= ");
-			System.out.println(i);
-
-			System.out.print(" y= ");
-			System.out.println(j);
-		}
-	}
 
 	public void Flag(){
 		//place flag on tile
@@ -59,6 +26,7 @@ public class MyMouseAdapterMS extends MouseAdapter {
 	//	if(MineExploded){
 	//		public void Lose(){
 	//			//Show Board
+				//Game state is false
 	//		}
 	//	}
 
@@ -117,6 +85,7 @@ public class MyMouseAdapterMS extends MouseAdapter {
 			break;
 		}
 	}
+	
 	public void mouseReleased(MouseEvent e) {
 		switch (e.getButton()) {
 		case 1:		//Left mouse button
@@ -146,7 +115,7 @@ public class MyMouseAdapterMS extends MouseAdapter {
 			System.out.print(" y =");
 			System.out.println(gridY);
 			if(gridX == -2 || gridY == -2){
-				ResetGame();
+				SuperExplosivo.SetMine();
 			}
 
 			if ((myPanel.mouseDownGridX == -1) || (myPanel.mouseDownGridY == -1)) {
