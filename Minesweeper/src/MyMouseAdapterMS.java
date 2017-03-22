@@ -110,17 +110,17 @@ public class MyMouseAdapterMS extends MouseAdapter {
 				}
 				SuperExplosivo.SetMine();
 
-				
+
 			}
 
-			if ((myPanel.mouseDownGridX == -1) || (myPanel.mouseDownGridY == -1)) {
-				//Had pressed outside
+			if ((myPanel.mouseDownGridX == -1) || (myPanel.mouseDownGridY == -1)) {}
+			//Had pressed outside
+			//Do nothing
+			else {
+				if ((gridX == -1) || (gridY == -1)) {}
+				//Is releasing outside
 				//Do nothing
-			} else {
-				if ((gridX == -1) || (gridY == -1)) {
-					//Is releasing outside
-					//Do nothing
-				} else {
+				else {
 					if ((myPanel.mouseDownGridX != gridX) || (myPanel.mouseDownGridY != gridY)) {}
 					//Released the mouse button on a different cell where it was pressed 
 					else {
@@ -131,7 +131,6 @@ public class MyMouseAdapterMS extends MouseAdapter {
 								if(SuperExplosivo.mines[i][j] == MINE){
 									if((gridX == i) && (gridY == j)){
 										myPanel.colorArray[gridX-1][gridY-1] = Color.black;
-
 									}
 
 								}
@@ -140,21 +139,21 @@ public class MyMouseAdapterMS extends MouseAdapter {
 
 						}
 
+						//
+						//						if ((gridX == 0) || (gridY == 0)) {
+						//						}
+						//						//Bottom Left
+						//						if(gridX == 0 && gridY == 0){}
+						//						//Left Collumn
+						//						if(gridX == 0 && gridY!= 0){}
+						//						//Top Row
+						//						if(gridY == 0 && gridX != 0){}
 
-						if ((gridX == 0) || (gridY == 0)) {
-						}
-						//Bottom Left
-						if(gridX == 0 && gridY == 0){}
-						//Left Collumn
-						if(gridX == 0 && gridY!= 0){}
-						//Top Row
-						if(gridY == 0 && gridX != 0){}
 
-
-						else {
-							//On the grid other than on the left column and on the top row:
-
-						}
+						//						else {
+						//							//On the grid other than on the left column and on the top row:
+						//
+						//						}
 					}
 				}
 			}
@@ -182,14 +181,42 @@ public class MyMouseAdapterMS extends MouseAdapter {
 			int gridXR = myPanelR.getGridX(xR, yR);
 			int gridYR = myPanelR.getGridY(xR, yR);
 
-			if(gridXR >0 && gridXR <11 && gridYR >0 && gridYR>11){
+			if ((myPanelR.mouseDownGridX == -1) || (myPanelR.mouseDownGridY == -1)) {}
+			//Had pressed outside
+			//Do nothing
+			else {
+				if ((gridXR == -1) || (gridYR == -1)) {}
+				//Is releasing outside
+				//Do nothing
+				else {
+					if ((myPanelR.mouseDownGridX != gridXR) || (myPanelR.mouseDownGridY != gridYR)) {}
+					//Released the mouse button on a different cell where it was pressed 
+					else {
+						//Released the mouse button on the same cell where it was pressed
+
+						for(int i = 1; i < 10; i++){
+							for(int j = 1; j < 10; j++){
+								if((gridXR == i) && (gridYR == j)){
+									if(myPanelR.colorArray[gridXR-1][gridYR-1].equals(Color.RED)){
+										myPanelR.colorArray[gridXR-1][gridYR-1] = Color.WHITE;
+									}
+									else if(SuperExplosivo.mines[i][j] == MINE){
+										myPanelR.colorArray[gridXR-1][gridYR-1] = Color.black;
+									}
+									else{
+									myPanelR.colorArray[gridXR-1][gridYR-1] = Color.RED;
+									}
+								}
+
+							}
+
+						}
+					}
+				}
 			}
-			if ((gridXR == -1) || (gridYR == -1)) { // If you click outside the grid
-
-			}
 
 
-
+			myPanelR.repaint();
 			break;
 		default:    //Some other button (2 = Middle mouse button, etc.)
 			//Do nothing
