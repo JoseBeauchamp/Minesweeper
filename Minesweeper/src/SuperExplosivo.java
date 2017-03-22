@@ -2,14 +2,15 @@ import java.util.Random;
 
 public class SuperExplosivo {
 
-	public static int[][] mines = new int[11][11];
+	public static int[][] mines = new int[10][10];
 	public static Random generator = new Random();
 	public static int MINE = 10;
 	Random random = new Random();
+	
 
 	public static void SetMine(){
-		for(int i=1; i<10; i++){
-			for(int j=1; j<10; j++){
+		for(int i=1; i<9; i++){
+			for(int j=1; j<9; j++){
 				mines[i][j] = 0 ;
 			}
 		}
@@ -17,8 +18,8 @@ public class SuperExplosivo {
 			int i;
 			int j;
 			do{
-				i = generator.nextInt(11);
-				j = generator.nextInt(11);
+				i = generator.nextInt(10);
+				j = generator.nextInt(10);
 			}while(mines[i][j] ==  MINE || i== 0 || j== 0);
 
 			mines[i][j] = MINE;
@@ -32,6 +33,7 @@ public class SuperExplosivo {
 
 			System.out.print(" y= ");
 			System.out.println(j);
+	
 		}
 
 	}
