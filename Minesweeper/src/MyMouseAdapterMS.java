@@ -10,57 +10,13 @@ import java.util.Scanner;
 import javax.swing.JFrame;
 
 public class MyMouseAdapterMS extends MouseAdapter {
-	private Random generator = new Random();
-	private int[][] mines = new int[11][11];
-	private char[][] boardgame = new char[11][11];
-	private int Line, Column;
-	private int MINE = 10;
+
 	Random random = new Random();
 	Scanner input = new Scanner(System.in);
+	public int MINE = 10;
 
 
-	public void ResetGame(){
 
-		for(int i=1; i<10; i++){
-			for(int j=1; j<10; j++){
-				boardgame[i][j] = 0 ;
-			}
-
-		}
-		for(int c=1; c <11 ; c++){
-			int i;
-			int j;
-			do{
-				i = generator.nextInt(11);
-				j = generator.nextInt(11);
-			}while(mines[i][j] ==  MINE || i== 0 || j== 0);
-
-			mines[i][j] = MINE;
-
-
-			System.out.print("Mine  " );
-			System.out.println(c);
-
-			System.out.print(" x= ");
-			System.out.println(i);
-
-			System.out.print(" y= ");
-			System.out.println(j);
-		}
-	}
-
-	public void Flag(){
-		//place flag on tile
-
-
-	}
-
-
-	//	if(MineExploded){
-	//		public void Lose(){
-	//			//Show Board
-	//		}
-	//	}
 
 	public void mousePressed(MouseEvent e) {
 		switch (e.getButton()) {
@@ -117,6 +73,7 @@ public class MyMouseAdapterMS extends MouseAdapter {
 			break;
 		}
 	}
+
 	public void mouseReleased(MouseEvent e) {
 		switch (e.getButton()) {
 		case 1:		//Left mouse button
@@ -145,8 +102,15 @@ public class MyMouseAdapterMS extends MouseAdapter {
 
 			System.out.print(" y =");
 			System.out.println(gridY);
-			if(gridX == -2 || gridY == -2){
-				ResetGame();
+			if(gridX == -2 && gridY == -2){
+				for(int i = 0; i < 9; i++){
+					for(int j = 0; j < 9; j++){
+						myPanel.colorArray[i][j] = Color.WHITE;
+					}
+				}
+				SuperExplosivo.SetMine();
+
+				
 			}
 
 			if ((myPanel.mouseDownGridX == -1) || (myPanel.mouseDownGridY == -1)) {
@@ -161,7 +125,24 @@ public class MyMouseAdapterMS extends MouseAdapter {
 					//Released the mouse button on a different cell where it was pressed 
 					else {
 						//Released the mouse button on the same cell where it was pressed
-						if ((gridX == 0) || (gridY == 0)) {}
+
+						for(int i = 1; i < 10; i++){
+							for(int j = 1; j < 10; j++){
+								if(SuperExplosivo.mines[i][j] == MINE){
+									if((gridX == i) && (gridY == j)){
+										myPanel.colorArray[gridX-1][gridY-1] = Color.black;
+
+									}
+
+								}
+
+							}
+
+						}
+
+
+						if ((gridX == 0) || (gridY == 0)) {
+						}
 						//Bottom Left
 						if(gridX == 0 && gridY == 0){}
 						//Left Collumn
@@ -202,7 +183,6 @@ public class MyMouseAdapterMS extends MouseAdapter {
 			int gridYR = myPanelR.getGridY(xR, yR);
 
 			if(gridXR >0 && gridXR <11 && gridYR >0 && gridYR>11){
-				Flag();
 			}
 			if ((gridXR == -1) || (gridYR == -1)) { // If you click outside the grid
 
