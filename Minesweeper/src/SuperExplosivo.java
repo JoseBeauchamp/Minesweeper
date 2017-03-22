@@ -14,6 +14,7 @@ public class SuperExplosivo {
 				mines[i][j] = 0 ;
 			}
 		}
+		
 		for(int c=1; c <11 ; c++){
 			int i;
 			int j;

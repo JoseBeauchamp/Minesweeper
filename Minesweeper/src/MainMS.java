@@ -7,6 +7,7 @@ public class MainMS {
 		myFrame.setLocation(400, 150);
 		myFrame.setSize(460, 460);
 
+		
 		MyPanelMS myPanel = new MyPanelMS();
 		myFrame.add(myPanel);
 

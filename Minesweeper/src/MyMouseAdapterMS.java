@@ -108,6 +108,7 @@ public class MyMouseAdapterMS extends MouseAdapter {
 						myPanel.colorArray[i][j] = Color.WHITE;
 					}
 				}
+				
 				SuperExplosivo.SetMine();
 
 
