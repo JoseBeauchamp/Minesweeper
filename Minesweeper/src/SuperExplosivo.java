@@ -7,7 +7,12 @@ public class SuperExplosivo {
 	public static int MINE = 10;
 	Random random = new Random();
 	
-
+	//public static void NeighboringMines(){
+		
+		//int neighbor = 0;
+		
+			
+		//}
 	public static void SetMine(){
 		for(int i=1; i<9; i++){
 			for(int j=1; j<9; j++){

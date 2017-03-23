@@ -1,6 +1,10 @@
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Insets;
+import java.awt.Rectangle;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -125,17 +129,68 @@ public class MyMouseAdapterMS extends MouseAdapter {
 					//Released the mouse button on a different cell where it was pressed 
 					else {
 						//Released the mouse button on the same cell where it was pressed
+						if((gridX != 1 && gridX != 9) && (gridY != 1 && gridY != 9)){
+							int neighbor = 0;
 
+							for(int i=0; i <3 ; i++){
+								if(SuperExplosivo.mines[gridX -1 + i][gridY - 1]== MINE){
+									neighbor = neighbor + 1;
+								}
+							}
+							for(int i=0; i <3 ; i++){
+								if(SuperExplosivo.mines[gridX -1 + i][gridY + 1]== MINE){
+									neighbor = neighbor + 1;
+								}
+							}
+
+							if(SuperExplosivo.mines[gridX -1][gridY]== MINE){
+								neighbor = neighbor + 1;
+							}
+							if(SuperExplosivo.mines[gridX +1][gridY]== MINE){
+								neighbor = neighbor + 1;
+							}
+							System.out.println(neighbor);
+							// print on tile
+							
+								switch (neighbor) {
+								case 0:
+									
+									break;
+								case 1:
+									
+									break;
+								case 2:
+									
+									break;
+								case 3:
+									
+									break;
+								case 4:
+									break;
+								case 5:
+									break;
+								case 6:
+									
+									break;
+								case 7:
+									
+									break;
+								case 8:
+									
+									break;
+								}
+							}
+						
 						for(int i = 1; i < 10; i++){
 							for(int j = 1; j < 10; j++){
 								if(SuperExplosivo.mines[i][j] == MINE){
 									if((gridX == i) && (gridY == j)){
 										myPanel.colorArray[gridX-1][gridY-1] = Color.black;
 									}
-
 								}
 
 							}
+							//SuperExplosivo.NeighboringMines();
 
 						}
 
@@ -204,7 +259,7 @@ public class MyMouseAdapterMS extends MouseAdapter {
 										myPanelR.colorArray[gridXR-1][gridYR-1] = Color.black;
 									}
 									else{
-									myPanelR.colorArray[gridXR-1][gridYR-1] = Color.RED;
+										myPanelR.colorArray[gridXR-1][gridYR-1] = Color.RED;
 									}
 								}
 
