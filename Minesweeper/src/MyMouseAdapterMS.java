@@ -125,19 +125,41 @@ public class MyMouseAdapterMS extends MouseAdapter {
 					//Released the mouse button on a different cell where it was pressed 
 					else {
 						//Released the mouse button on the same cell where it was pressed
+						if((gridX != 1 && gridX != 9) && (gridY != 1 && gridY != 9)){
+							int neighbor = 0;
 
+							for(int i=0; i <3 ; i++){
+								if(SuperExplosivo.mines[gridX -1 + i][gridY - 1]== MINE){
+									neighbor = neighbor + 1;
+								}
+							}
+								for(int i=0; i <3 ; i++){
+									if(SuperExplosivo.mines[gridX -1 + i][gridY + 1]== MINE){
+										neighbor = neighbor + 1;
+									}
+								}
+
+							if(SuperExplosivo.mines[gridX -1][gridY]== MINE){
+								neighbor = neighbor + 1;
+							}
+							if(SuperExplosivo.mines[gridX +1][gridY]== MINE){
+								neighbor = neighbor + 1;
+							}
+							System.out.println(neighbor);
+
+						}
 						for(int i = 1; i < 10; i++){
 							for(int j = 1; j < 10; j++){
 								if(SuperExplosivo.mines[i][j] == MINE){
 									if((gridX == i) && (gridY == j)){
 										myPanel.colorArray[gridX-1][gridY-1] = Color.black;
 									}
-
 								}
 
-							}
+								}
+									//SuperExplosivo.NeighboringMines();
 
-						}
+								}
 
 						//
 						//						if ((gridX == 0) || (gridY == 0)) {
@@ -204,7 +226,7 @@ public class MyMouseAdapterMS extends MouseAdapter {
 										myPanelR.colorArray[gridXR-1][gridYR-1] = Color.black;
 									}
 									else{
-									myPanelR.colorArray[gridXR-1][gridYR-1] = Color.RED;
+										myPanelR.colorArray[gridXR-1][gridYR-1] = Color.RED;
 									}
 								}
 
