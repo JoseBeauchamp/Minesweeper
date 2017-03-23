@@ -1,6 +1,10 @@
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Insets;
+import java.awt.Rectangle;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -133,11 +137,11 @@ public class MyMouseAdapterMS extends MouseAdapter {
 									neighbor = neighbor + 1;
 								}
 							}
-								for(int i=0; i <3 ; i++){
-									if(SuperExplosivo.mines[gridX -1 + i][gridY + 1]== MINE){
-										neighbor = neighbor + 1;
-									}
+							for(int i=0; i <3 ; i++){
+								if(SuperExplosivo.mines[gridX -1 + i][gridY + 1]== MINE){
+									neighbor = neighbor + 1;
 								}
+							}
 
 							if(SuperExplosivo.mines[gridX -1][gridY]== MINE){
 								neighbor = neighbor + 1;
@@ -146,8 +150,37 @@ public class MyMouseAdapterMS extends MouseAdapter {
 								neighbor = neighbor + 1;
 							}
 							System.out.println(neighbor);
-
-						}
+							// print on tile
+							
+								switch (neighbor) {
+								case 0:
+									
+									break;
+								case 1:
+									
+									break;
+								case 2:
+									
+									break;
+								case 3:
+									
+									break;
+								case 4:
+									break;
+								case 5:
+									break;
+								case 6:
+									
+									break;
+								case 7:
+									
+									break;
+								case 8:
+									
+									break;
+								}
+							}
+						
 						for(int i = 1; i < 10; i++){
 							for(int j = 1; j < 10; j++){
 								if(SuperExplosivo.mines[i][j] == MINE){
@@ -156,10 +189,10 @@ public class MyMouseAdapterMS extends MouseAdapter {
 									}
 								}
 
-								}
-									//SuperExplosivo.NeighboringMines();
+							}
+							//SuperExplosivo.NeighboringMines();
 
-								}
+						}
 
 						//
 						//						if ((gridX == 0) || (gridY == 0)) {
