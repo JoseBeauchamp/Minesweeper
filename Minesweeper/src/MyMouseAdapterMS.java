@@ -121,9 +121,7 @@ public class MyMouseAdapterMS extends MouseAdapter {
 			//Had pressed outside
 			//Do nothing
 			else {
-				if ((gridX == -1) || (gridY == -1)) {
-					
-				}
+				if ((gridX == -1) || (gridY == -1)) {}
 				//Is releasing outside
 				//Do nothing
 				else {
@@ -131,82 +129,26 @@ public class MyMouseAdapterMS extends MouseAdapter {
 					//Released the mouse button on a different cell where it was pressed 
 					else {
 						//Released the mouse button on the same cell where it was pressed
-						int neighbor = 0;
-						
-						//Top Left
-						if(gridX == 1 && gridY == 1){
-							if(SuperExplosivo.mines[gridX+1][gridY] == MINE){
-									neighbor++;
-								}
-								if(SuperExplosivo.mines[gridX][gridY+ 1]== MINE){
-									neighbor++;
-								}
-								if(SuperExplosivo.mines[gridX+1][gridY+ 1]== MINE){
-									neighbor++;
-								}
-						}
-						
-						//bottom left
-						if(gridX == 1 && gridY == 1){
-							if(SuperExplosivo.mines[gridX+1][gridY] == MINE){
-									neighbor++;
-								}
-								if(SuperExplosivo.mines[gridX][gridY - 1]== MINE){
-									neighbor++;
-								}
-								if(SuperExplosivo.mines[gridX + 1][gridY - 1]== MINE){
-									neighbor++;
-								}
-						}
-						
-						//Top Right
-						if(gridX == 1 && gridY == 1){
-							if(SuperExplosivo.mines[gridX - 1][gridY] == MINE){
-									neighbor++;
-								}
-								if(SuperExplosivo.mines[gridX][gridY + 1]== MINE){
-									neighbor++;
-								}
-								if(SuperExplosivo.mines[gridX - 1][gridY + 1]== MINE){
-									neighbor++;
-								}
-						}
-						
-						//Bottom Right
-						if(gridX == 1 && gridY == 1){
-							if(SuperExplosivo.mines[gridX - 1][gridY] == MINE){
-									neighbor++;
-								}
-								if(SuperExplosivo.mines[gridX][gridY - 1]== MINE){
-									neighbor++;
-								}
-								if(SuperExplosivo.mines[gridX - 1][gridY - 1]== MINE){
-									neighbor++;
-								}
-						}
-						
-						//inside of grid nonborder
 						if((gridX != 1 && gridX != 9) && (gridY != 1 && gridY != 9)){
-						
+							int neighbor = 0;
 
 							for(int i=0; i <3 ; i++){
 								if(SuperExplosivo.mines[gridX -1 + i][gridY - 1]== MINE){
-									neighbor++;
+									neighbor = neighbor + 1;
 								}
 							}
 							for(int i=0; i <3 ; i++){
 								if(SuperExplosivo.mines[gridX -1 + i][gridY + 1]== MINE){
-									neighbor++;
+									neighbor = neighbor + 1;
 								}
 							}
 
 							if(SuperExplosivo.mines[gridX -1][gridY]== MINE){
-								neighbor++;
+								neighbor = neighbor + 1;
 							}
 							if(SuperExplosivo.mines[gridX +1][gridY]== MINE){
-								neighbor++;
+								neighbor = neighbor + 1;
 							}
-						}
 							System.out.println(neighbor);
 							// print on tile
 							
@@ -237,6 +179,7 @@ public class MyMouseAdapterMS extends MouseAdapter {
 									
 									break;
 								}
+							}
 						
 						for(int i = 1; i < 10; i++){
 							for(int j = 1; j < 10; j++){
