@@ -111,7 +111,7 @@ public class MyMouseAdapterMS extends MouseAdapter {
 				}
 				SuperExplosivo.SetMine();
 			}
-//need to find what makes the null appear
+			//need to find what makes the null appear
 			if ((myPanel.mouseDownGridX == -1) || (myPanel.mouseDownGridY == -1)) {}
 			//Had pressed outside
 			//Do nothing
@@ -124,12 +124,20 @@ public class MyMouseAdapterMS extends MouseAdapter {
 					//Released the mouse button on a different cell where it was pressed 
 					else {
 						//Released the mouse button on the same cell where it was pressed
-						
+
 						if((gridX >0 && gridX <10) && (gridY >0 && gridY <10)){
-
+							
+							myPanel.colorArray[gridX-1][gridY-1] = Color.BLUE;
 							System.out.println(SuperExplosivo.boardgame[gridX][gridY]);
-
-
+							if(SuperExplosivo.boardgame[gridX][gridY] == "0"){
+								myPanel.colorArray[gridX-1][gridY-1] = Color.BLUE;
+								while(SuperExplosivo.boardgame[gridX][gridY] == "0"){
+									
+									myPanel.colorArray[gridX-1][gridY-1] = Color.BLUE;
+									gridX++;
+									
+							}
+							}
 						}
 
 						for(int i = 1; i < 10; i++){
@@ -144,14 +152,14 @@ public class MyMouseAdapterMS extends MouseAdapter {
 
 							}
 						}
-						}
-				
+					}
+
 				}	
-				}
+			}
 			myPanel.repaint();
 			break;
-				
-				
+
+
 		case 3:		//Right mouse button
 			Component cR = e.getComponent();
 			while (!(cR instanceof JFrame)) {
@@ -208,5 +216,5 @@ public class MyMouseAdapterMS extends MouseAdapter {
 			//Do nothing
 			break;
 		}
-		}	
+	}	
 }
