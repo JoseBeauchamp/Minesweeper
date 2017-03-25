@@ -67,6 +67,7 @@ public class MyPanelMS extends JPanel {
 		
 
 
+
 		//Draw the grid minus the bottom row (which has only one cell)
 		//By default, the grid will be 10x10 (see above: TOTAL_COLUMNS and TOTAL_ROWS) 
 		g.setColor(Color.BLACK);

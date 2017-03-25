@@ -18,6 +18,9 @@ public class MyMouseAdapterMS extends MouseAdapter {
 	Random random = new Random();
 	Scanner input = new Scanner(System.in);
 	public int MINE = 10;
+	public int neighbor = 0;
+	public static char[][] boardgame = new char[10][10]; 
+	public static boolean gamestate;
 
 
 
@@ -130,30 +133,35 @@ public class MyMouseAdapterMS extends MouseAdapter {
 					else {
 						//Released the mouse button on the same cell where it was pressed
 						if((gridX != 1 && gridX != 9) && (gridY != 1 && gridY != 9)){
-							int neighbor = 0;
+
 
 							for(int i=0; i <3 ; i++){
 								if(SuperExplosivo.mines[gridX -1 + i][gridY - 1]== MINE){
 									neighbor = neighbor + 1;
+									boardgame[gridX-1+i][gridY-1] = (char) neighbor;
 								}
 							}
 							for(int i=0; i <3 ; i++){
 								if(SuperExplosivo.mines[gridX -1 + i][gridY + 1]== MINE){
 									neighbor = neighbor + 1;
+									boardgame[gridX-1+i][gridY+1] = (char) neighbor;
 								}
 							}
 
 							if(SuperExplosivo.mines[gridX -1][gridY]== MINE){
 								neighbor = neighbor + 1;
+								boardgame[gridX-1][gridY] = (char) neighbor;
 							}
 							if(SuperExplosivo.mines[gridX +1][gridY]== MINE){
 								neighbor = neighbor + 1;
+								boardgame[gridX+1][gridY] = (char) neighbor;
 							}
 							System.out.println(neighbor);
 							// print on tile
 							
 								switch (neighbor) {
 								case 0:
+									
 									
 									break;
 								case 1:
@@ -186,6 +194,8 @@ public class MyMouseAdapterMS extends MouseAdapter {
 								if(SuperExplosivo.mines[i][j] == MINE){
 									if((gridX == i) && (gridY == j)){
 										myPanel.colorArray[gridX-1][gridY-1] = Color.black;
+										gamestate = false;
+										SuperExplosivo.showBoard(gamestate);
 									}
 								}
 
@@ -254,9 +264,6 @@ public class MyMouseAdapterMS extends MouseAdapter {
 								if((gridXR == i) && (gridYR == j)){
 									if(myPanelR.colorArray[gridXR-1][gridYR-1].equals(Color.RED)){
 										myPanelR.colorArray[gridXR-1][gridYR-1] = Color.WHITE;
-									}
-									else if(SuperExplosivo.mines[i][j] == MINE){
-										myPanelR.colorArray[gridXR-1][gridYR-1] = Color.black;
 									}
 									else{
 										myPanelR.colorArray[gridXR-1][gridYR-1] = Color.RED;
