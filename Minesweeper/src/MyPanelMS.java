@@ -65,6 +65,11 @@ public class MyPanelMS extends JPanel {
 		
 		g2.draw(resetButton);
 		
+		
+		g.setFont(font1);
+		g.setColor(Color.black);
+		g.drawString("", 70, 35);
+		
 		//need a method that can draw the numbers in the grid
 		
 
