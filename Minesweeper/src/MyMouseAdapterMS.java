@@ -111,7 +111,7 @@ public class MyMouseAdapterMS extends MouseAdapter {
 				}
 				SuperExplosivo.SetMine();
 			}
-
+//need to find what makes the null appear
 			if ((myPanel.mouseDownGridX == -1) || (myPanel.mouseDownGridY == -1)) {}
 			//Had pressed outside
 			//Do nothing
@@ -156,6 +156,7 @@ public class MyMouseAdapterMS extends MouseAdapter {
 								SuperExplosivo.boardgame[gridX][gridY] = Integer.toString(neighbor);
 							}
 						}
+						
 						//Top Right
 						if(gridX == 1 && gridY == 1){
 							if(SuperExplosivo.mines[gridX - 1][gridY] == MINE){

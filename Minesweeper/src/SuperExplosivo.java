@@ -8,12 +8,7 @@ public class SuperExplosivo {
 	Random random = new Random();
 	public static String[][] boardgame = new String[10][10]; 
 	
-	//public static void NeighboringMines(){
-		
-		//int neighbor = 0;
-		
-			
-		//}
+
 	public static void SetMine(){
 		for(int i=1; i<9; i++){
 			for(int j=1; j<9; j++){

@@ -65,6 +65,8 @@ public class MyPanelMS extends JPanel {
 		
 		g2.draw(resetButton);
 		
+		//need a method that can draw the numbers in the grid
+		
 
 
 
@@ -118,6 +120,7 @@ public class MyPanelMS extends JPanel {
 		y = y / (INNER_CELL_SIZE + 1);
 		return x;
 	}
+	
 	
 	public int getGridY(int x, int y) {
 		Insets myInsets = getInsets();
