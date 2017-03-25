@@ -21,6 +21,7 @@ public class MyPanelMS extends JPanel {
 	public int mouseDownGridY = 0;
 	public Color[][] colorArray = new Color[TOTAL_COLUMNS][TOTAL_ROWS];
 	
+	
 	public MyPanelMS() {   //This is the constructor... this code runs first to initialize
 		if (INNER_CELL_SIZE + (new Random()).nextInt(1) < 1) {	//Use of "random" to prevent unwanted Eclipse warning
 			throw new RuntimeException("INNER_CELL_SIZE must be positive!");
@@ -64,6 +65,9 @@ public class MyPanelMS extends JPanel {
 		
 		g2.draw(resetButton);
 		
+		//need a method that can draw the numbers in the grid
+		
+
 
 
 		//Draw the grid minus the bottom row (which has only one cell)
@@ -116,6 +120,7 @@ public class MyPanelMS extends JPanel {
 		y = y / (INNER_CELL_SIZE + 1);
 		return x;
 	}
+	
 	
 	public int getGridY(int x, int y) {
 		Insets myInsets = getInsets();
