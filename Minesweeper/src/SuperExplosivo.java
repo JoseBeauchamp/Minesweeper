@@ -6,7 +6,7 @@ public class SuperExplosivo {
 	public static Random generator = new Random();
 	public static int MINE = 10;
 	Random random = new Random();
-	public static char[][] boardgame = new char[10][10]; 
+	public static String[][] boardgame = new String[10][10]; 
 	
 	//public static void NeighboringMines(){
 		
@@ -18,7 +18,7 @@ public class SuperExplosivo {
 		for(int i=1; i<9; i++){
 			for(int j=1; j<9; j++){
 				mines[i][j] = 0 ;
-				boardgame[i][j] = '_';
+				boardgame[i][j] = "_";
 			}
 		}
 		for(int c=1; c <11 ; c++){
@@ -30,7 +30,7 @@ public class SuperExplosivo {
 			}while(mines[i][j] ==  MINE || i== 0 || j== 0);
 
 			mines[i][j] = MINE;
-			boardgame[i][j] = '*';
+			boardgame[i][j] = "*";
 
 
 			System.out.print("Mine  " );

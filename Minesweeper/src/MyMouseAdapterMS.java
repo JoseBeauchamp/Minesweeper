@@ -1,13 +1,8 @@
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.Insets;
-import java.awt.Rectangle;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -19,7 +14,6 @@ public class MyMouseAdapterMS extends MouseAdapter {
 	Scanner input = new Scanner(System.in);
 	public int MINE = 10;
 	public int neighbor = 0;
-	public static char[][] boardgame = new char[10][10]; 
 	public static boolean gamestate;
 
 
@@ -116,8 +110,6 @@ public class MyMouseAdapterMS extends MouseAdapter {
 					}
 				}
 				SuperExplosivo.SetMine();
-
-
 			}
 
 			if ((myPanel.mouseDownGridX == -1) || (myPanel.mouseDownGridY == -1)) {}
@@ -132,63 +124,164 @@ public class MyMouseAdapterMS extends MouseAdapter {
 					//Released the mouse button on a different cell where it was pressed 
 					else {
 						//Released the mouse button on the same cell where it was pressed
+						neighbor = 0;
+						
+						if((gridX ==1) && (gridY ==1)){
+							if(SuperExplosivo.mines[gridX+1][gridY] == MINE){
+								neighbor++;
+								SuperExplosivo.boardgame[gridX][gridY] = Integer.toString(neighbor);
+							}
+							if(SuperExplosivo.mines[gridX][gridY] == MINE){
+								neighbor++;
+								SuperExplosivo.boardgame[gridX][gridY] = Integer.toString(neighbor);
+							}
+							if(SuperExplosivo.mines[gridX +1][gridY+1]== MINE){
+								neighbor++;
+								SuperExplosivo.boardgame[gridX][gridY] = Integer.toString(neighbor);
+							}
+						}
+						//Bottom left
+						if(gridX == 1 && gridY==1){
+							
+							if(SuperExplosivo.mines[gridX +1][gridY]== MINE){
+								neighbor++;
+								SuperExplosivo.boardgame[gridX][gridY] = Integer.toString(neighbor);
+							}
+							if(SuperExplosivo.mines[gridX][gridY-1]==MINE){
+								neighbor++;
+								SuperExplosivo.boardgame[gridX][gridY] = Integer.toString(neighbor);
+							}
+							if(SuperExplosivo.mines[gridX + 1][gridY - 1]== MINE){
+								neighbor++;
+								SuperExplosivo.boardgame[gridX][gridY] = Integer.toString(neighbor);
+							}
+						}
+						//Top Right
+						if(gridX == 1 && gridY == 1){
+							if(SuperExplosivo.mines[gridX - 1][gridY] == MINE){
+								neighbor++;
+								SuperExplosivo.boardgame[gridX][gridY] = Integer.toString(neighbor);
+							}
+							if(SuperExplosivo.mines[gridX][gridY + 1]== MINE){
+								neighbor++;
+								SuperExplosivo.boardgame[gridX][gridY] = Integer.toString(neighbor);
+							}
+							if(SuperExplosivo.mines[gridX - 1][gridY + 1]== MINE){
+								neighbor++;
+								SuperExplosivo.boardgame[gridX][gridY] = Integer.toString(neighbor);
+							}
+						}
+						//Bottom Right
+						if(gridX == 1 && gridY == 1){
+							if(SuperExplosivo.mines[gridX - 1][gridY] == MINE){
+								neighbor++;
+								SuperExplosivo.boardgame[gridX][gridY] = Integer.toString(neighbor);
+							}
+							if(SuperExplosivo.mines[gridX][gridY - 1]== MINE){
+								neighbor++;
+								SuperExplosivo.boardgame[gridX][gridY] = Integer.toString(neighbor);
+							}
+							if(SuperExplosivo.mines[gridX - 1][gridY - 1]== MINE){
+								neighbor++;
+								SuperExplosivo.boardgame[gridX][gridY] = Integer.toString(neighbor);
+							}
+						}
+						//Left Border
+						if (gridX == 1 && gridY > 1 && gridY < 9){
+							if(SuperExplosivo.mines[gridX][gridY + 1] == MINE){
+								neighbor++;
+								SuperExplosivo.boardgame[gridX][gridY] = Integer.toString(neighbor);
+							}
+							if(SuperExplosivo.mines[gridX][gridY - 1]== MINE){
+								neighbor++;
+								SuperExplosivo.boardgame[gridX][gridY] = Integer.toString(neighbor);
+							}
+							for(int i=0; i <3 ; i++){
+								if(SuperExplosivo.mines[gridX + 1][gridY - 1 + i]== MINE){
+									neighbor++;
+									SuperExplosivo.boardgame[gridX][gridY] = Integer.toString(neighbor);
+								}
+							}
+						}
+						//Right Border
+						if (gridX == 9 && gridY > 1 && gridY < 9){
+							if(SuperExplosivo.mines[gridX][gridY + 1] == MINE){
+								neighbor++;
+								SuperExplosivo.boardgame[gridX][gridY] = Integer.toString(neighbor);
+							}
+							if(SuperExplosivo.mines[gridX][gridY - 1]== MINE){
+								neighbor++;
+								SuperExplosivo.boardgame[gridX][gridY] = Integer.toString(neighbor);
+							}
+							for(int i=0; i <3 ; i++){
+								if(SuperExplosivo.mines[gridX - 1][gridY - 1 + i]== MINE){
+									neighbor++;
+									SuperExplosivo.boardgame[gridX][gridY] = Integer.toString(neighbor);
+								}
+							}
+						}
+						//Top Border
+						if (gridY == 1 && gridX > 1 && gridX < 9){
+							if(SuperExplosivo.mines[gridX - 1][gridY] == MINE){
+								neighbor++;
+								SuperExplosivo.boardgame[gridX][gridY] = Integer.toString(neighbor);
+							}
+							if(SuperExplosivo.mines[gridX + 1][gridY]== MINE){
+								neighbor++;
+								SuperExplosivo.boardgame[gridX][gridY] = Integer.toString(neighbor);
+							}
+							for(int i=0; i <3 ; i++){
+								if(SuperExplosivo.mines[gridX - 1 + i][gridY + 1 ]== MINE){
+									neighbor++;
+									SuperExplosivo.boardgame[gridX][gridY] = Integer.toString(neighbor);
+								}
+							}
+						}
+						//Top Border
+						if (gridY == 9 && gridX > 1 && gridX < 9){
+							if(SuperExplosivo.mines[gridX - 1][gridY] == MINE){
+								neighbor++;
+								SuperExplosivo.boardgame[gridX][gridY] = Integer.toString(neighbor);
+							}
+							if(SuperExplosivo.mines[gridX + 1][gridY]== MINE){
+								neighbor++;
+								SuperExplosivo.boardgame[gridX][gridY] = Integer.toString(neighbor);
+							}
+							for(int i=0; i <3 ; i++){
+								if(SuperExplosivo.mines[gridX - 1 + i][gridY - 1 ]== MINE){
+									neighbor++;
+									SuperExplosivo.boardgame[gridX][gridY] = Integer.toString(neighbor);
+								}
+							}
+						}
+						//Inside of grid Non-Border
 						if((gridX != 1 && gridX != 9) && (gridY != 1 && gridY != 9)){
-
 
 							for(int i=0; i <3 ; i++){
 								if(SuperExplosivo.mines[gridX -1 + i][gridY - 1]== MINE){
-									neighbor = neighbor + 1;
-									boardgame[gridX-1+i][gridY-1] = (char) neighbor;
+									neighbor++;
+									SuperExplosivo.boardgame[gridX][gridY] = Integer.toString(neighbor);
 								}
 							}
 							for(int i=0; i <3 ; i++){
 								if(SuperExplosivo.mines[gridX -1 + i][gridY + 1]== MINE){
-									neighbor = neighbor + 1;
-									boardgame[gridX-1+i][gridY+1] = (char) neighbor;
+									neighbor++;
+									SuperExplosivo.boardgame[gridX][gridY] = Integer.toString(neighbor);
 								}
 							}
-
 							if(SuperExplosivo.mines[gridX -1][gridY]== MINE){
-								neighbor = neighbor + 1;
-								boardgame[gridX-1][gridY] = (char) neighbor;
+								neighbor++;
+								SuperExplosivo.boardgame[gridX][gridY] = Integer.toString(neighbor);
 							}
 							if(SuperExplosivo.mines[gridX +1][gridY]== MINE){
-								neighbor = neighbor + 1;
-								boardgame[gridX+1][gridY] = (char) neighbor;
+								neighbor++;
+								SuperExplosivo.boardgame[gridX][gridY] = Integer.toString(neighbor);
 							}
-							System.out.println(neighbor);
-							// print on tile
-							
-								switch (neighbor) {
-								case 0:
-									
-									
-									break;
-								case 1:
-									
-									break;
-								case 2:
-									
-									break;
-								case 3:
-									
-									break;
-								case 4:
-									break;
-								case 5:
-									break;
-								case 6:
-									
-									break;
-								case 7:
-									
-									break;
-								case 8:
-									
-									break;
-								}
-							}
-						
+						}
+						System.out.println(neighbor);
+
+
+
 						for(int i = 1; i < 10; i++){
 							for(int j = 1; j < 10; j++){
 								if(SuperExplosivo.mines[i][j] == MINE){
@@ -200,25 +293,7 @@ public class MyMouseAdapterMS extends MouseAdapter {
 								}
 
 							}
-							//SuperExplosivo.NeighboringMines();
-
 						}
-
-						//
-						//						if ((gridX == 0) || (gridY == 0)) {
-						//						}
-						//						//Bottom Left
-						//						if(gridX == 0 && gridY == 0){}
-						//						//Left Collumn
-						//						if(gridX == 0 && gridY!= 0){}
-						//						//Top Row
-						//						if(gridY == 0 && gridX != 0){}
-
-
-						//						else {
-						//							//On the grid other than on the left column and on the top row:
-						//
-						//						}
 					}
 				}
 			}
@@ -269,14 +344,11 @@ public class MyMouseAdapterMS extends MouseAdapter {
 										myPanelR.colorArray[gridXR-1][gridYR-1] = Color.RED;
 									}
 								}
-
 							}
-
 						}
 					}
 				}
 			}
-
 
 			myPanelR.repaint();
 			break;
