@@ -125,32 +125,89 @@ public class MyMouseAdapterMS extends MouseAdapter {
 					else {
 						//Released the mouse button on the same cell where it was pressed
 
-						if((gridX >0 && gridX <10) && (gridY >0 && gridY <10)){
-							
-							myPanel.colorArray[gridX-1][gridY-1] = Color.BLUE;
-							System.out.println(SuperExplosivo.boardgame[gridX][gridY]);
-							if(SuperExplosivo.boardgame[gridX][gridY] == "0"){
+						if(gamestate){
+							if((gridX >0 && gridX <10) && (gridY >0 && gridY <10)){
+								System.out.println(SuperExplosivo.boardgame[gridX][gridY]);
 								myPanel.colorArray[gridX-1][gridY-1] = Color.BLUE;
-								while(SuperExplosivo.boardgame[gridX][gridY] == "0"){
+								
+								//right
+								int n = 1;
+								int temp;
+								temp = Integer.parseInt(SuperExplosivo.boardgame[gridX + n][gridY]);
+								System.out.println( "temp" + temp);
+								
+								//need to make it so if the 0 is in the final collumns it doesnt crash because of the bounds
+								while( temp == 0){
+									n++;
 									
-									myPanel.colorArray[gridX-1][gridY-1] = Color.BLUE;
-									gridX++;
+								temp =Integer.parseInt( SuperExplosivo.boardgame[gridX + n][gridY]);
+								}
+
+								for(int X = gridX + 1 ; X< gridX + n; X++ ){
+									myPanel.colorArray[X-1][gridY-1] = Color.CYAN;
+								}
+								//down
+								n = 1;
+								temp = Integer.parseInt(SuperExplosivo.boardgame[gridX][gridY+n]);
+								System.out.println( "temp" + temp);
+								
+								//need to make it so if the 0 is in the final row it doesnt crash because of the bounds
+								while( temp == 0){
+									n++;
 									
-							}
+								temp =Integer.parseInt( SuperExplosivo.boardgame[gridX][gridY+n]);
+								}
+
+								for(int Y = gridY + 1 ; Y< gridY + n; Y++ ){
+									myPanel.colorArray[gridX-1][Y-1] = Color.CYAN;
+								}
+								//up
+								n = 1;
+								temp = Integer.parseInt(SuperExplosivo.boardgame[gridX][gridY-n]);
+								System.out.println( "temp" + temp);
+								
+								//need to make it so if the 0 is in the first row it doesnt crash because of the bounds
+								while( temp == 0){
+									n++;
+									
+								temp =Integer.parseInt( SuperExplosivo.boardgame[gridX][gridY-n]);
+								}
+
+								for(int Y = gridY - 1 ; Y< gridY - n; Y++ ){
+									myPanel.colorArray[gridX-1][Y-1] = Color.CYAN;
+								}
+								
+								//left
+								n = 1;
+								temp = Integer.parseInt(SuperExplosivo.boardgame[gridX-n][gridY]);
+								System.out.println( "temp" + temp);
+								
+								//need to make it so if the 0 is in the first collumns it doesnt crash because of the bounds
+								while( temp == 0){
+									n++;
+									
+								temp =Integer.parseInt( SuperExplosivo.boardgame[gridX-n][gridY]);
+								}
+
+								for(int X = gridX - 1 ; X< gridX - n; X++ ){
+									myPanel.colorArray[X-1][gridY-1] = Color.CYAN;
+								}
 							}
 						}
 
-						for(int i = 1; i < 10; i++){
-							for(int j = 1; j < 10; j++){
-								if(SuperExplosivo.mines[i][j] == MINE){
-									if((gridX == i) && (gridY == j)){
-										myPanel.colorArray[gridX-1][gridY-1] = Color.black;
+
+						if(SuperExplosivo.mines[gridX][gridY] == MINE){
+							for(int i = 1; i < 10; i++){
+								for(int j = 1; j < 10; j++){
+									if(SuperExplosivo.mines[i][j] == MINE){
+										myPanel.colorArray[i-1][j-1] = Color.black;
 										gamestate = false;
-										SuperExplosivo.showBoard(gamestate);
+
 									}
 								}
 
 							}
+							SuperExplosivo.showBoard(gamestate);
 						}
 					}
 
@@ -193,18 +250,11 @@ public class MyMouseAdapterMS extends MouseAdapter {
 					//Released the mouse button on a different cell where it was pressed 
 					else {
 						//Released the mouse button on the same cell where it was pressed
-
-						for(int i = 1; i < 10; i++){
-							for(int j = 1; j < 10; j++){
-								if((gridXR == i) && (gridYR == j)){
-									if(myPanelR.colorArray[gridXR-1][gridYR-1].equals(Color.RED)){
-										myPanelR.colorArray[gridXR-1][gridYR-1] = Color.WHITE;
-									}
-									else{
-										myPanelR.colorArray[gridXR-1][gridYR-1] = Color.RED;
-									}
-								}
-							}
+						if(myPanelR.colorArray[gridXR-1][gridYR-1].equals(Color.RED)){
+							myPanelR.colorArray[gridXR-1][gridYR-1] = Color.WHITE;
+						}
+						else{
+							myPanelR.colorArray[gridXR-1][gridYR-1] = Color.RED;
 						}
 					}
 				}
