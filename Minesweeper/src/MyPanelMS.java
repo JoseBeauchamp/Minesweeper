@@ -19,7 +19,7 @@ public class MyPanelMS extends JPanel {
 	public int y = -1;
 	public int mouseDownGridX = 0;
 	public int mouseDownGridY = 0;
-	public Color[][] colorArray = new Color[TOTAL_COLUMNS][TOTAL_ROWS];
+	public Color[][] colorArray = new Color[TOTAL_COLUMNS +1][TOTAL_ROWS+1];
 	
 	
 	public MyPanelMS() {   //This is the constructor... this code runs first to initialize
