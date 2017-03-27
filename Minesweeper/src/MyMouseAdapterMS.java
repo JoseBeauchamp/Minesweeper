@@ -122,15 +122,16 @@ public class MyMouseAdapterMS extends MouseAdapter {
 					//Released the mouse button on a different cell where it was pressed 
 					else {
 						//Released the mouse button on the same cell where it was pressed
-
+						//if no win or lose and clicked
 						if(gamestate){
+							//inside of grid
 							if((gridX >0 && gridX <10) && (gridY >0 && gridY <10)){
 								System.out.println(SuperExplosivo.boardgame[gridX][gridY]);
-
+								//tile clicked is not bomb
 								if(SuperExplosivo.mines[gridX][gridY] != MINE){
-
+									
 									myPanel.colorArray[gridX-1][gridY-1] = Color.BLUE;
-
+									myPanel.repaint();
 									int temp = Integer.parseInt(SuperExplosivo.boardgame[gridX][gridY]);
 
 									if(temp == 0 || temp == 1 || temp ==2 || temp==3 || temp == 4 || temp == 5 || temp == 6 || temp == 7){
