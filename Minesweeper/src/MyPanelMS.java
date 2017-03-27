@@ -55,7 +55,7 @@ public class MyPanelMS extends JPanel {
 		int x1 = myInsets.left+30;
 		int y1 = myInsets.top + 30;
 		
-		
+		//reset button
 		Rectangle resetButton = new Rectangle(55,10,90,40);
 		
 		Font font1 = new Font("arial", Font.BOLD, 15);
