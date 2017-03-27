@@ -17,7 +17,7 @@ public class SuperExplosivo {
 				boardgame[i][j] = "0";
 			}
 		}
-		for(int c=1; c <2 ; c++){
+		for(int c=1; c <11 ; c++){
 			int i;
 			int j;
 			do{
