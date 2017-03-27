@@ -10,7 +10,6 @@ public class SuperExplosivo {
 	public static int neighbor;
 
 	public static void SetMine(){
-		MyMouseAdapterMS.gamestate=true;
 		for(int i=1; i<10; i++){
 			for(int j=1; j<10; j++){
 				mines[i][j] = 0 ;
@@ -207,31 +206,19 @@ public class SuperExplosivo {
 					}
 				}
 	}
-	for(int j = 1; j<10;j++){
-				
-				for(int i = 1; i<10; i++){
-					System.out.print(boardgame[i][j] + " | ");
-					
-					//Find a way to paint the board
-				}
-				System.out.println(" Row" + j);
-				System.out.println("-----------------------------------------");
-			}
 
 }
 	
 	public static void showBoard(Boolean gamestate){
 		if (gamestate == false){
-			System.out.println(" Bomb ");
-			for(int j = 1; j<10;j++){
-				
-				for(int i = 1; i<10; i++){
-					System.out.print(boardgame[i][j] + " | ");
+			System.out.println(" First collumn ");
+			for(int i = 1; i<10; i++){
+				System.out.println("collumn " + i);
+				for(int j = 1; j<10;j++){
+					System.out.println(boardgame[i][j]);
 					
 					//Find a way to paint the board
 				}
-				System.out.println(" Row" + j);
-				System.out.println("-----------------------------------------");
 			}
 		}
 		
