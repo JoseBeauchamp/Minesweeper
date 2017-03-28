@@ -160,6 +160,7 @@ public class MyMouseAdapterMS extends MouseAdapter {
 
 									if(temp == 0 || temp == 1 || temp ==2 || temp==3 || temp == 4 || temp == 5 || temp == 6 || temp == 7){
 										int n;
+										
 										//right
 										if(gridX != 9 || SuperExplosivo.mines[gridX+1][gridY] != MINE){
 											n = 0;
