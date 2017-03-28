@@ -22,6 +22,7 @@ public class SuperExplosivo {
 			int j;
 			do{
 				i = generator.nextInt(10);
+				
 				j = generator.nextInt(10);
 			}while(mines[i][j] ==  MINE || i== 0 || j== 0);
 
