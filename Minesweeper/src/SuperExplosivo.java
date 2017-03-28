@@ -26,7 +26,7 @@ public class SuperExplosivo {
 			}while(mines[i][j] ==  MINE || i== 0 || j== 0);
 
 			mines[i][j] = MINE;
-			boardgame[i][j] = "*";
+			boardgame[i][j] = "20";
 
 
 			System.out.print("Mine  " );
