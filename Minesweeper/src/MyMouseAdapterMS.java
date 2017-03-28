@@ -1,5 +1,6 @@
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Graphics;
 import java.awt.Insets;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -15,6 +16,7 @@ public class MyMouseAdapterMS extends MouseAdapter {
 	public int MINE = 10;
 	public int neighbor = 0;
 	public static boolean gamestate;
+
 
 
 
@@ -146,6 +148,7 @@ public class MyMouseAdapterMS extends MouseAdapter {
 												if(SuperExplosivo.mines[gridX+n][gridY] != MINE && myPanel.colorArray[gridX-1+n][gridY-1] == Color.WHITE){
 													System.out.println("painted");
 													myPanel.colorArray[gridX-1+n][gridY-1] = Color.CYAN;
+													SuperExplosivo.draw(null, gridX-1+n, gridY-1);
 												}
 												n++;
 											}
@@ -159,6 +162,7 @@ public class MyMouseAdapterMS extends MouseAdapter {
 												temp =Integer.parseInt( SuperExplosivo.boardgame[gridX][gridY+n]);
 												if(SuperExplosivo.mines[gridX][gridY+n] != MINE && myPanel.colorArray[gridX-1][gridY-1+n] == Color.WHITE){
 													myPanel.colorArray[gridX-1][gridY-1+n] = Color.CYAN;
+													SuperExplosivo.draw(null, gridX-1, gridY-1+n);
 												}
 												n++;
 											}
@@ -173,6 +177,7 @@ public class MyMouseAdapterMS extends MouseAdapter {
 												temp =Integer.parseInt( SuperExplosivo.boardgame[gridX][gridY-n]);
 												if(SuperExplosivo.mines[gridX][gridY-n] != MINE && myPanel.colorArray[gridX-1][gridY-1-n] == Color.WHITE){
 													myPanel.colorArray[gridX-1][gridY-1-n] = Color.CYAN;
+													SuperExplosivo.draw(null, gridX-1, gridY-1-n);
 												}
 												n++;
 											}
@@ -185,6 +190,7 @@ public class MyMouseAdapterMS extends MouseAdapter {
 												temp =Integer.parseInt( SuperExplosivo.boardgame[gridX-n][gridY]);
 												if(SuperExplosivo.mines[gridX-n][gridY] != MINE && myPanel.colorArray[gridX-1-n][gridY-1] == Color.WHITE){
 													myPanel.colorArray[gridX-1-n][gridY-1] = Color.CYAN;
+													SuperExplosivo.draw(null, gridX-1-n, gridY-1);
 												}
 												n++;
 											}
@@ -196,7 +202,8 @@ public class MyMouseAdapterMS extends MouseAdapter {
 											temp = Integer.parseInt(SuperExplosivo.boardgame[gridX+n][gridY+n]);
 											while( temp == 0 && gridX+n != 10  && gridY+n != 10 && SuperExplosivo.mines[gridX+n][gridY+n] != MINE ){
 
-												myPanel.colorArray[gridX-1 +n][gridY-1 +n] = Color.CYAN;
+												myPanel.colorArray[gridX-1 + n][gridY-1 + n] = Color.CYAN;
+												SuperExplosivo.draw(null, gridX-1+n, gridY-1+n);
 
 												//right expansion
 												if(gridX + n != 9){
@@ -207,6 +214,7 @@ public class MyMouseAdapterMS extends MouseAdapter {
 														temp =Integer.parseInt( SuperExplosivo.boardgame[gridX + n+nR][gridY + n]);
 														if(SuperExplosivo.mines[gridX+n+nR][gridY+n] != MINE && myPanel.colorArray[gridX-1 +n+nR][gridY-1 +n] == Color.WHITE){
 															myPanel.colorArray[gridX-1 +n+nR][gridY-1 +n] = Color.CYAN;
+															SuperExplosivo.draw(null, gridX-1+n+nR, gridY-1+n);
 														}
 														nR++;
 													}
@@ -220,6 +228,7 @@ public class MyMouseAdapterMS extends MouseAdapter {
 														temp =Integer.parseInt( SuperExplosivo.boardgame[gridX + n][gridY + n + nD]);
 														if(SuperExplosivo.mines[gridX+n][gridY+n+nD] != MINE && myPanel.colorArray[gridX-1 +n][gridY-1 +n + nD] == Color.WHITE){	
 															myPanel.colorArray[gridX-1 +n][gridY-1 +n + nD] = Color.CYAN;
+															SuperExplosivo.draw(null, gridX-1+n, gridY-1+n+nD);
 														}
 														nD++;
 													}
@@ -236,6 +245,7 @@ public class MyMouseAdapterMS extends MouseAdapter {
 												temp =Integer.parseInt( SuperExplosivo.boardgame[gridX - n][gridY + n]);
 												if(SuperExplosivo.mines[gridX-n][gridY+n] != MINE && myPanel.colorArray[gridX-1-n][gridY-1+n] == Color.WHITE){
 													myPanel.colorArray[gridX-1-n][gridY-1+n] = Color.CYAN;
+													SuperExplosivo.draw(null, gridX-1-n, gridY-1+n);
 												}
 												//left expansion
 												if(gridX - n != 1){
@@ -246,6 +256,7 @@ public class MyMouseAdapterMS extends MouseAdapter {
 														temp =Integer.parseInt( SuperExplosivo.boardgame[gridX - n-nL][gridY - n]);
 														if(SuperExplosivo.mines[gridX-n-nL][gridY+n] != MINE && myPanel.colorArray[gridX-1 -n-nL][gridY-1 +n] == Color.WHITE){
 															myPanel.colorArray[gridX-1 -n-nL][gridY-1 +n] = Color.CYAN;
+															SuperExplosivo.draw(null, gridX-1-n-nL, gridY-1+n);
 														}
 														nL++;
 													}
@@ -259,6 +270,7 @@ public class MyMouseAdapterMS extends MouseAdapter {
 														temp =Integer.parseInt( SuperExplosivo.boardgame[gridX - n][gridY + n+nD]);
 														if(SuperExplosivo.mines[gridX-n][gridY+n+nD] != MINE && myPanel.colorArray[gridX-1 -n][gridY-1 +n +nD] == Color.WHITE){
 															myPanel.colorArray[gridX-1 -n][gridY-1 +n +nD] = Color.CYAN;
+															SuperExplosivo.draw(null, gridX-1-n, gridY-1+n+nD);
 														}
 														nD++;
 													}
@@ -276,6 +288,7 @@ public class MyMouseAdapterMS extends MouseAdapter {
 												temp =Integer.parseInt( SuperExplosivo.boardgame[gridX + n][gridY - n]);
 												if(SuperExplosivo.mines[gridX+n][gridY-n] != MINE && myPanel.colorArray[gridX-1 +n][gridY-1 -n] == Color.WHITE){
 													myPanel.colorArray[gridX-1 +n][gridY-1 -n] = Color.CYAN;
+													SuperExplosivo.draw(null, gridX-1+n, gridY-1-n);
 												}
 												//right expansion
 												int tempR; 
@@ -285,6 +298,7 @@ public class MyMouseAdapterMS extends MouseAdapter {
 													temp =Integer.parseInt( SuperExplosivo.boardgame[gridX + n+nR][gridY - n]);
 													if(SuperExplosivo.mines[gridX+n+nR][gridY-n] != MINE && myPanel.colorArray[gridX-1 +n+nR][gridY-1 -n] == Color.WHITE){
 														myPanel.colorArray[gridX-1 +n+nR][gridY-1 -n] = Color.CYAN;
+														SuperExplosivo.draw(null, gridX-1+n+nR, gridY-1-n);
 													}
 													nR++;
 												}
@@ -297,6 +311,7 @@ public class MyMouseAdapterMS extends MouseAdapter {
 														temp =Integer.parseInt( SuperExplosivo.boardgame[gridX + n][gridY - n-nU]);
 														if(SuperExplosivo.mines[gridX+n][gridY-n-nU] != MINE && myPanel.colorArray[gridX-1 +n][gridY-1 -n -nU] == Color.WHITE){
 															myPanel.colorArray[gridX-1 +n][gridY-1 -n -nU] = Color.CYAN;
+															SuperExplosivo.draw(null, gridX-1+n, gridY-1-n-nU);
 														}
 														nU++;
 													}
@@ -321,6 +336,7 @@ public class MyMouseAdapterMS extends MouseAdapter {
 														temp =Integer.parseInt( SuperExplosivo.boardgame[gridX - n-nL][gridY - n]);
 														if(SuperExplosivo.mines[gridX-n-nL][gridY-n] != MINE && myPanel.colorArray[gridX-1 -n-nL][gridY-1 -n] == Color.WHITE){
 															myPanel.colorArray[gridX-1 -n-nL][gridY-1 -n] = Color.CYAN;
+															SuperExplosivo.draw(null, gridX-1-n-nL, gridY-1-n);
 														}
 														nL++;
 													}
@@ -334,6 +350,7 @@ public class MyMouseAdapterMS extends MouseAdapter {
 														temp =Integer.parseInt( SuperExplosivo.boardgame[gridX - n][gridY - n - nU]);
 														if(SuperExplosivo.mines[gridX-n][gridY-n-nU] != MINE && myPanel.colorArray[gridX-1 -n][gridY-1 -n - nU] == Color.WHITE){	
 															myPanel.colorArray[gridX-1 -n][gridY-1 -n - nU] = Color.CYAN;
+															SuperExplosivo.draw(null, gridX-1-n, gridY-1-n-nU);
 														}
 														nU++;
 													}
@@ -342,6 +359,7 @@ public class MyMouseAdapterMS extends MouseAdapter {
 												temp =Integer.parseInt( SuperExplosivo.boardgame[gridX - n][gridY - n]);
 												if(SuperExplosivo.mines[gridX-n][gridY-n] != MINE && myPanel.colorArray[gridX-1 -n][gridY-1 -n] == Color.WHITE){
 													myPanel.colorArray[gridX-1 -n][gridY-1 -n] = Color.CYAN;
+													SuperExplosivo.draw(null, gridX-1-n, gridY-1-n);
 												}
 												n++;
 											}
