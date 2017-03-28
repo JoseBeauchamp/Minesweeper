@@ -68,7 +68,7 @@ public class MyPanelMS extends JPanel {
 		g2.draw(resetButton);
 
 
-		
+
 
 
 		//need a method that can draw the numbers in the grid
@@ -97,7 +97,7 @@ public class MyPanelMS extends JPanel {
 
 			}
 		}
-		
+
 		for(int i= 1; i<10 ; i++){
 			for(int j= 1; j<10;j++){
 
@@ -105,15 +105,17 @@ public class MyPanelMS extends JPanel {
 				int y11 = 45;
 
 
-				Font font = new Font("arial", Font.BOLD, 15);
-				g.setFont(font);
-				g.setColor(Color.black);
-				g.drawString(num, x11 + (i*30), y11 + (j*30));
+				if(MyMouseAdapterMS.revealed[i][j] == true){
+					Font font = new Font("arial", Font.BOLD, 15);
+					g.setFont(font);
+					g.setColor(Color.black);
+					g.drawString(SuperExplosivo.boardgame[i][j], x11 + (i*30), y11 + (j*30));
+				}
 
 			}
 		}
-		
-		
+
+
 	}
 
 	public int getGridX(int x, int y) {

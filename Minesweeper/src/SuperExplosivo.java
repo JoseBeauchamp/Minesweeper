@@ -20,8 +20,10 @@ public class SuperExplosivo {
 			for(int j=1; j<10; j++){
 				mines[i][j] = 0 ;
 				boardgame[i][j] = "0";
+				MyMouseAdapterMS.revealed[i][j]=false;
 			}
 		}
+		
 		
 		//10 Mines will be made
 		for(int c=1; c <11 ; c++){
@@ -214,7 +216,6 @@ public class SuperExplosivo {
 								neighbor++;
 								boardgame[i][j]= Integer.toString(neighbor); 
 							}
-						System.out.println(neighbor);
 					}
 				}
 			}
