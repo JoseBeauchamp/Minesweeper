@@ -233,6 +233,7 @@ public class MyMouseAdapterMS extends MouseAdapter {
 													int tempR;
 													int nR =0;
 													tempR = Integer.parseInt(SuperExplosivo.boardgame[gridX+n][gridY+n]);
+													//right expansion nR with each diagonal incrementation n
 													while(tempR == 0 && gridX + n +nR != 10 && gridY + n != 10 && SuperExplosivo.mines[gridX+n+nR][gridY+n] != MINE){
 														temp =Integer.parseInt( SuperExplosivo.boardgame[gridX + n+nR][gridY + n]);
 														if(SuperExplosivo.mines[gridX+n+nR][gridY+n] != MINE && myPanel.colorArray[gridX-1 +n+nR][gridY-1 +n] == Color.WHITE){
