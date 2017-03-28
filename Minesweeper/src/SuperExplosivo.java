@@ -6,11 +6,11 @@ import java.util.Random;
 
 public class SuperExplosivo {
 
-	public static int[][] mines = new int[10][10];
+	public static int[][] mines = new int[11][11];
 	public static Random generator = new Random();
 	public static int MINE = 10;
 	Random random = new Random();
-	public static String[][] boardgame = new String[10][10]; 
+	public static String[][] boardgame = new String[11][11]; 
 	public static int neighbor;
 	
 
@@ -22,6 +22,8 @@ public class SuperExplosivo {
 				boardgame[i][j] = "0";
 			}
 		}
+		
+		//10 Mines will be made
 		for(int c=1; c <11 ; c++){
 			int i;
 			int j;
@@ -30,8 +32,9 @@ public class SuperExplosivo {
 				j = generator.nextInt(10);
 			}while(mines[i][j] ==  MINE || i== 0 || j== 0);
 
+			//setting mines value for arrays
 			mines[i][j] = MINE;
-			boardgame[i][j] = "*";
+			boardgame[i][j] = "20";
 
 
 			System.out.print("Mine  " );
@@ -43,12 +46,14 @@ public class SuperExplosivo {
 			System.out.print(" y= ");
 			System.out.println(j);
 		}
+		
 		for(int i = 1; i<10 ;i++){
 			for(int j = 1; j<10 ; j++){
-				if(!(boardgame[i][j] == "*")){
+				if(!(boardgame[i][j] == "20")){
 					//search for neighbors			
 					neighbor = 0;
 
+					//upper left grid corner neighbor check
 					if((i ==1) && (j ==1)){
 						boardgame[i][j] = Integer.toString(neighbor);
 						if(mines[i+1][j] == MINE){
@@ -64,7 +69,7 @@ public class SuperExplosivo {
 							boardgame[i][j] = Integer.toString(neighbor);
 						}
 					}
-					//Bottom left
+					//Bottom left grid corner neighbor check
 					if(i == 1 && j==1){
 						boardgame[i][j] = Integer.toString(neighbor);
 						if(mines[i +1][j]== MINE){
@@ -81,8 +86,9 @@ public class SuperExplosivo {
 						}
 					}
 
-					//Top Right
-					if(i == 1 && j == 1){
+					
+					//Top Right grid corner neighbor check
+					if(i == 9 && j == 1){
 						boardgame[i][j] = Integer.toString(neighbor);
 						if(mines[i - 1][j] == MINE){
 							neighbor++;
@@ -97,8 +103,8 @@ public class SuperExplosivo {
 							boardgame[i][j] = Integer.toString(neighbor);
 						}
 					}
-					//Bottom Right
-					if(i == 1 && j == 1){
+					//Bottom Right grid corner neighbor check
+					if(i == 9 && j == 9){
 						boardgame[i][j] = Integer.toString(neighbor);
 						if(mines[i - 1][j] == MINE){
 							neighbor++;
@@ -113,7 +119,7 @@ public class SuperExplosivo {
 							boardgame[i][j] = Integer.toString(neighbor);
 						}
 					}
-					//Left Border
+					//Left grid Border neighbor check
 					if (i == 1 && j > 1 && j < 9){
 						boardgame[i][j] = Integer.toString(neighbor);
 						if(mines[i][j + 1] == MINE){
@@ -131,7 +137,7 @@ public class SuperExplosivo {
 							}
 						}
 					}
-					//Right Border
+					//Right grid Border neighbor check
 					if (i == 9 && j > 1 && j < 9){
 						boardgame[i][j] = Integer.toString(neighbor);
 						if(mines[i][j + 1] == MINE){
@@ -149,7 +155,7 @@ public class SuperExplosivo {
 							}
 						}
 					}
-					//Top Border
+					//Top grid Border neighbor check
 					if (j == 1 && i > 1 && i < 9){
 						boardgame[i][j] = Integer.toString(neighbor);
 						if(mines[i - 1][j] == MINE){
@@ -167,7 +173,7 @@ public class SuperExplosivo {
 							}
 						}
 					}
-					//Bottom Border
+					//Bottom grid Border neighbor check
 					if (j == 9 && i > 1 && i < 9){
 						boardgame[i][j] = Integer.toString(neighbor);
 						if(mines[i - 1][j] == MINE){
@@ -185,7 +191,7 @@ public class SuperExplosivo {
 							}
 						}
 					}
-					//Inside of grid Non-Border
+					//Inside of grid Non-Border neighbor check
 					if((i != 1 && i != 9) && (j != 1 && j != 9)){
 						boardgame[i][j] = Integer.toString(neighbor);
 						for(int c2=0; c2 <3 ; c2++){
@@ -203,22 +209,22 @@ public class SuperExplosivo {
 						if(mines[i -1][j]== MINE){
 							neighbor++;
 							boardgame[i][j]= Integer.toString(neighbor); 
+						}
 							if(mines[i +1][j]== MINE){
 								neighbor++;
 								boardgame[i][j]= Integer.toString(neighbor); 
 							}
-						}
 						System.out.println(neighbor);
 					}
 				}
 			}
 		}
+		//console grid for easier reading of grid values 
 		for(int j = 1; j<10;j++){
 
 			for(int i = 1; i<10; i++){
 				System.out.print(boardgame[i][j] + " | ");
 
-				//Find a way to paint the board
 			}
 			System.out.println(" Row" + j);
 			System.out.println("-----------------------------------------");
@@ -226,6 +232,7 @@ public class SuperExplosivo {
 
 	}
 
+	//console board show for loss
 	public static void showBoard(Boolean gamestate){
 		if (gamestate == false){
 			System.out.println(" Bomb ");
@@ -234,7 +241,7 @@ public class SuperExplosivo {
 				for(int i = 1; i<10; i++){
 					System.out.print(boardgame[i][j] + " | ");
 
-					//Find a way to paint the board
+
 				}
 				System.out.println(" Row" + j);
 				System.out.println("-----------------------------------------");
@@ -243,6 +250,7 @@ public class SuperExplosivo {
 
 	}
 
+	//grid number painting
 	public static Graphics draw(Graphics g1, int gridX, int gridY){
 
 		int x1 =40;
