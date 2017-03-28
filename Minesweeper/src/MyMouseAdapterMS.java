@@ -29,7 +29,7 @@ public class MyMouseAdapterMS extends MouseAdapter {
 			numColor = Color.BLUE;
 			break;
 		case 2:
-			numColor =new Color(0x9900ff);
+			numColor =new Color(0x9900ff);//light violet
 			break;
 		case 3:
 			numColor = new Color(0x964B00);   //Brown (from http://simple.wikipedia.org/wiki/List_of_colors)
@@ -231,7 +231,7 @@ public class MyMouseAdapterMS extends MouseAdapter {
 												if(gridX + n != 9){
 													int tempR;
 													int nR =0;
-													tempR = Integer.parseInt(SuperExplosivo.boardgame[gridX][gridY]);
+													tempR = Integer.parseInt(SuperExplosivo.boardgame[gridX+n][gridY+n]);
 													while(tempR == 0 && gridX + n +nR != 10 && gridY + n != 10 && SuperExplosivo.mines[gridX+n+nR][gridY+n] != MINE){
 														temp =Integer.parseInt( SuperExplosivo.boardgame[gridX + n+nR][gridY + n]);
 														if(SuperExplosivo.mines[gridX+n+nR][gridY+n] != MINE && myPanel.colorArray[gridX-1 +n+nR][gridY-1 +n] == Color.WHITE){
@@ -245,7 +245,7 @@ public class MyMouseAdapterMS extends MouseAdapter {
 												if(gridY + n != 9 ){
 													int tempD;
 													int nD =0;
-													tempD = Integer.parseInt(SuperExplosivo.boardgame[gridX][gridY]);
+													tempD = Integer.parseInt(SuperExplosivo.boardgame[gridX+n][gridY+n]);
 													while(tempD == 0 && gridX + n != 10 && gridY + n +nD!= 10 && SuperExplosivo.mines[gridX+n][gridY+n+nD] != MINE ){
 														temp =Integer.parseInt( SuperExplosivo.boardgame[gridX + n][gridY + n + nD]);
 														if(SuperExplosivo.mines[gridX+n][gridY+n+nD] != MINE && myPanel.colorArray[gridX-1 +n][gridY-1 +n + nD] == Color.WHITE){	
@@ -273,7 +273,7 @@ public class MyMouseAdapterMS extends MouseAdapter {
 												if(gridX - n != 1){
 													int tempL; 
 													int nL = 0; 
-													tempL = Integer.parseInt(SuperExplosivo.boardgame[gridX][gridY]);
+													tempL = Integer.parseInt(SuperExplosivo.boardgame[gridX-n][gridY+n]);
 													while(tempL == 0 && gridX - n -nL != 0 && gridY + n != 10 && SuperExplosivo.mines[gridX-n-nL][gridY+n] != MINE){
 														temp =Integer.parseInt( SuperExplosivo.boardgame[gridX - n-nL][gridY - n]);
 														if(SuperExplosivo.mines[gridX-n-nL][gridY+n] != MINE && myPanel.colorArray[gridX-1 -n-nL][gridY-1 +n] == Color.WHITE){
@@ -287,7 +287,7 @@ public class MyMouseAdapterMS extends MouseAdapter {
 												if(gridY + n != 9){
 													int tempD; 
 													int nD = 0; 
-													tempD = Integer.parseInt(SuperExplosivo.boardgame[gridX][gridY]);
+													tempD = Integer.parseInt(SuperExplosivo.boardgame[gridX-n][gridY+n]);
 													while(tempD == 0 && gridX - n != 0 && gridY + n +nD!= 10 && SuperExplosivo.mines[gridX-n][gridY+n+nD] != MINE ){
 														temp =Integer.parseInt( SuperExplosivo.boardgame[gridX - n][gridY + n+nD]);
 														if(SuperExplosivo.mines[gridX-n][gridY+n+nD] != MINE && myPanel.colorArray[gridX-1 -n][gridY-1 +n +nD] == Color.WHITE){
@@ -315,7 +315,7 @@ public class MyMouseAdapterMS extends MouseAdapter {
 												//right expansion
 												int tempR; 
 												int nR = 0; 
-												tempR = Integer.parseInt(SuperExplosivo.boardgame[gridX][gridY]);
+												tempR = Integer.parseInt(SuperExplosivo.boardgame[gridX+n][gridY-n]);
 												while(tempR == 0 && gridX + n +nR != 10 && gridY - n != 0 && SuperExplosivo.mines[gridX+n+nR][gridY-n] != MINE){
 													temp =Integer.parseInt( SuperExplosivo.boardgame[gridX + n+nR][gridY - n]);
 													if(SuperExplosivo.mines[gridX+n+nR][gridY-n] != MINE && myPanel.colorArray[gridX-1 +n+nR][gridY-1 -n] == Color.WHITE){
@@ -328,7 +328,7 @@ public class MyMouseAdapterMS extends MouseAdapter {
 												if(gridY - n != 1){
 													int tempU; 
 													int nU = 0; 
-													tempU = Integer.parseInt(SuperExplosivo.boardgame[gridX][gridY]);
+													tempU = Integer.parseInt(SuperExplosivo.boardgame[gridX+n][gridY-n]);
 													while(tempU == 0 && gridX + n != 10 && gridY - n -nU!= 0 && SuperExplosivo.mines[gridX+n][gridY-n-nU] != MINE){
 														temp =Integer.parseInt( SuperExplosivo.boardgame[gridX + n][gridY - n-nU]);
 														if(SuperExplosivo.mines[gridX+n][gridY-n-nU] != MINE && myPanel.colorArray[gridX-1 +n][gridY-1 -n -nU] == Color.WHITE){
@@ -353,7 +353,7 @@ public class MyMouseAdapterMS extends MouseAdapter {
 												if(gridX - n != 1 || SuperExplosivo.mines[gridX-n][gridY] != MINE){
 													int tempL;
 													int nL =0;
-													tempL = Integer.parseInt(SuperExplosivo.boardgame[gridX][gridY]);
+													tempL = Integer.parseInt(SuperExplosivo.boardgame[gridX-n][gridY-n]);
 													while(tempL == 0 && gridX - n -nL != 0 && gridY - n != 0){
 														temp =Integer.parseInt( SuperExplosivo.boardgame[gridX - n-nL][gridY - n]);
 														if(SuperExplosivo.mines[gridX-n-nL][gridY-n] != MINE && myPanel.colorArray[gridX-1 -n-nL][gridY-1 -n] == Color.WHITE){
@@ -367,7 +367,7 @@ public class MyMouseAdapterMS extends MouseAdapter {
 												if(gridY - n != 1 || SuperExplosivo.mines[gridX][gridY-n] != MINE){
 													int tempU;
 													int nU =0;
-													tempU = Integer.parseInt(SuperExplosivo.boardgame[gridX][gridY]);
+													tempU = Integer.parseInt(SuperExplosivo.boardgame[gridX-n][gridY-n]);
 													while(tempU == 0 && gridX - n != 0 && gridY - n -nU!= 0){
 														temp =Integer.parseInt( SuperExplosivo.boardgame[gridX - n][gridY - n - nU]);
 														if(SuperExplosivo.mines[gridX-n][gridY-n-nU] != MINE && myPanel.colorArray[gridX-1 -n][gridY-1 -n - nU] == Color.WHITE){	
